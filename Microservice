@@ -1,0 +1,443 @@
+What is API ?
+Application Programming Interface 
+
+Set of rules and protocols that allow one software application
+to interact and communicate with another.
+
+so with the help of these rules and protocols two software applications or two software systems can communicate with each other
+so you can think of it like a messenger that delivers your
+request to the provider that you are asking a service from and then it delivers the response from the provider back to you in the form of the response.
+
+===================================================================
+
+Status Code- A status code is a numerical value returned by a server in response to a client's request, indicating the status of the request. Status codes are primarily used in HTTP responses to communicate whether a request was successful, encountered an error, or requires further action.
+
+1xx (Informational) – Request Received, Processing Continues
+
+100 Continue – The server has received the request headers and the client should proceed with sending the request body.
+
+101 Switching Protocols – The server is switching protocols as requested by the client (e.g., HTTP to WebSocket).
+
+===================
+
+2xx (Success) – Request Successfully Processed
+
+200 OK – The request was successful, and the server returned the expected response.
+
+201 Created – The request was successful, and a new resource was created.
+
+204 No Content – The request was successful, but there is no response body.
+
+======================
+
+301 Moved Permanently – The requested resource has been permanently moved to a new URL.
+
+302 Found (Moved Temporarily) – The requested resource is temporarily located at a different URL.
+
+304 Not Modified – The requested resource has not changed since the last request (used for caching).
+
+
+===========================
+
+
+4xx (Client Errors) – Request Issues from the Client Side
+
+400 Bad Request – The request is malformed or contains invalid parameters.
+401 Unauthorized – Authentication is required but missing or incorrect.
+403 Forbidden – The client does not have permission to access the resource.
+404 Not Found – The requested resource does not exist on the server.
+408 Request Timeout – The server timed out waiting for the client’s request.
+
+==========================
+
+5xx (Server Errors) – Issues from the Server Side
+
+500 Internal Server Error – A generic error message indicating the server encountered an issue.
+502 Bad Gateway – The server received an invalid response from an upstream server.
+503 Service Unavailable – The server is temporarily overloaded or down for maintenance.
+504 Gateway Timeout – The server, acting as a gateway, did not receive a timely response from an upstream server.
+
+===============================================================
+
+API requests are:
+
+1) GET (Retrieve Data)-
+Used to fetch data from the server.
+It does not modify any data used only to read data
+
+2) POST (Create Data)
+Used to send data to the server to create a new resource.
+
+3) PUT (Update Data)
+Used to update an existing resource.
+It replaces the entire resource with the new data.
+
+4) PATCH (Partial Update)
+Used to update partially an existing resource.
+Only the provided fields are updated.
+
+5) DELETE (Remove Data)
+Used to delete a resource from the server.
+
+=================================================
+
+
+Request mapping is an
+annotation that is provided to us and it can be used at method level as well as class level
+
+request mapping at the
+method level so at the method level request mapping annotation is used to
+map a particular method to a specific URL 
+
+request mapping is applied at a class level it sets a 
+base URL path for all the methods that are handling requests in that particular controller
+
+==========================================
+JPA -
+Java persistence API and it allows you to convert objects
+into relational table.
+
+this layer would be responsible for performing the crud operation so what do mean by crud operation crud stands for create read update and delete 
+
+like for example you
+have jobs so you are creating a job application so you might want to create
+a job read a job from the database update a job and delete a job so that is
+commonly known as crud 
+
+crud so crud is a common set of operation that is
+performed on any database 
+so to do this operation we will need a set of these
+methods so you will need find all which will be responsible for getting all the jobs from the database you will need get job which will give us a particular job depending on the ID that we give as a parameter to this method 
+
+findAll();
+getJob(int id);
+updateJob(Job emp)
+deleteJob(Job emp)
+
+so we don't have to create these methods instead we will create an interface
+and use something called as JPA repository that repository has the standard implementations that are needed for a typical database driven application
+
+
+ORM - 
+
+JPA dependency also provides support for ORM in Spring boot applications now 
+
+what I mean by ORM is object relational mapping now this is the process of
+
+converting your objects in Java to the relational tables okay that is what is
+
+known as ORM in simple terms so whatever fields we have within the object are being converted or mapped into columns
+
+===========================
+
+Entities -
+
+ Entities in JPA so what is an entity so in the context of JPA an entity
+
+represents a table in the relational database and each instance of an entity 
+
+corresponds to a single row within that database so what I mean over here is you take a look
+at the job class over here that we have created now entities in JPA are nothing
+more than and POJO or plain old Java objects okay so here we have this job
+3:43:16
+class it's a class which consists of some Fields okay and we are going to
+3:43:21
+Define this as an entity and this is something that will be used as a template to create a table within the
+3:43:28
+database so this is the entity that we are mapping to the spring boot database
+
+
+whenever you are working with JPA or whenever you are defining the entities you need to have a default Constructor'
+
+default Constructor  is needed because JPA needs to create
+
+instances of entity class during the retrieval of data from the database and
+
+JPA uses Reflections to create instances of entities okay and it populates the
+
+properties with the retrieve data from  the database and without this 
+
+default Constructor JPA won't be able to instantiate any entity object so that is why this is needed by JPA
+
+============================
+
+Repository -
+
+what is a repository in Spring data jpa a
+3:50:01
+repository is an interface that allows us to perform various operations
+3:50:06
+involving a database like create read update and deleting records without
+3:50:12
+writing the boiler plate code  
+
+
+ CED repository provides crud functions like save find one find
+3:51:36
+all count delete and so on it it is useful when it comes to usage of some
+3:51:42
+generic crud operations which means we get basic crud operations with the help of this interface into our application
+3:51:49
+but you can make use of GPA repository so jpa repository extends the functionality of CR repository and it
+3:51:57
+adds GPS specific methods like you have flash save and Flash and so on so if I
+
+
+
+    JobRepository jobrepository;
+
+    public JobServiceImpl(JobRepository jobrepository) {
+        this.jobrepository = jobrepository;
+    }
+
+ the reason why we are generating constructor
+3:55:39
+this is job repository is a bean that is being managed by Spring and because of
+3:55:44
+this Constructor it will be autowired at the runtime okay so you don't need to
+3:55:49
+create and manage this object and you don't need to create an instance and assign it and initialize it over here it
+3:55:56
+will all be done by Spring provided you have a Constructor defined
+
+
+#configure H2 database
+spring.h2.console.enabled=true
+spring.datasource.url=jdbc:h2:mem:test
+
+#sql statement generated by hibernate is logged into console
+spring.jpa.show-sql=true
+
+
+spring.jpa.hibernate.ddl-auto=update
+
+#Hibernate will create the database schema when the application starts and
+# drop (delete) the schema when the application stops.
+spring.jpa.hibernate.ddl-auto=update
+
+
+
+
+==============
+
+Company ↔ Jobs
+One company → Many jobs (@OneToMany)
+One job → One company (@ManyToOne)
+
+Company ↔ Reviews
+One company → Many reviews (@OneToMany)
+One review → One company (@ManyToOne)
+
+Job ↔ Reviews
+One job → Many reviews (@OneToMany)
+One review → One job (@ManyToOne)
+
+
+==================================
+
+we are accepting the company ID and we are accepting the
+5:32:03
+entire review object now why are we accepting the company ID because if you
+5:32:09
+go to the review entity to save a review you need the company object okay so
+5:32:16
+using this ID we are going to fetch the entire company object and we are going
+5:32:21
+to add it to the review
+
+
+=================================================
+
+Spring boot Actuator -
+
+===================================================
+
+DOCKER 
+
+Docker
+7:01:42
+solves the problem of dependency management compatibility issues
+7:01:47
+environmental inconsistency by providing with containerization okay it enables
+7:01:55
+developer to pack their application in and their dependencies into container
+7:02:01
+and this ensures consistent execution in different host operating systems okay
+7:02:07
+and it eliminates all the version conflict
+
+ocker so Docker is an open-source platform that allows you to automate the
+7:02:22
+deployment scaling and management of applications using containerization okay now
+7:02:28
+containerization is a lightweight virtualization technology that enables
+7:02:34
+you to package an application along with its dependencies into a standard unit
+7:02:40
+which is called a containe
+
+==========================================
+
+command to build an image for springboot Application 
+
+
+./mvnw spring-boot:build-image "-Dspring-boot.build-image.imageName=rahulmandal610/jobappimage"
+
+
+==========================================================
+DOCKER COMMANDS : 
+
+docker push image_name
+
+docker pull <username/image>
+
+docker run it -d -p <host-port>:<container-port> --name <name> <image>
+
+docker stop container_ID/container_name
+
+docker start container_ID/container_name
+
+docker rm container_ID/container_name - remove a stopped container
+
+docker rmi image_name/image_id - remove image from local storage
+
+docker ps - list all the running container
+
+docker ps -a - list all the running & stopped container
+
+docker images - ist all the image
+
+docker container exec -it  container_ID/container_name bash   
+
+docker build -t <username/image> .  - build a image from docker file
+
+docker logs container_ID/container_name
+
+docker inspect container_ID/container_name
+
+
+once the image has of our application has been created we can run the 
+application in terminal using the below command
+
+docker run -p    8080       :  8080    rahulmandal610/jobappimage 
+                port of app : port of container
+
+
+
+============================
+POSTGRESQL
+
+running a postgres database container ->
+
+docker run -d --name db -e POSTGRES_PASSWORD=Rahul@123 postgres
+
+running a pgAdmin container ->
+
+docker run -d --name pgadmin -e PGADMIN_DEFAULT_EMAIL=admin@admin.com
+-e PGADMIN_DEFAULT_PASSWORD=Rahul@123 dpage/pgadmin4
+
+
+=========================================
+
+communicating across conatainer 
+
+docker exec -it pgadmin ping db    -> container pgadmin communicates             with db container
+
+using the above command it will give bad request error because 
+docker container cannot communicate without docker network
+
+so we will remove the two container using -> docker rm -f db pgadmin
+
+now create DOCKER NETWORK USING ->
+
+docker network create my-network 
+
+
+Again then peform both command to create container->
+ 
+docker run -d --name db --network  my-network -e POSTGRES_PASSWORD=Rahul@123 postgres
+
+docker run -d --name pgadmin --network my-network -e PGADMIN_DEFAULT_EMAIL=admin@admin.com
+-e PGADMIN_DEFAULT_PASSWORD=Rahul@123 dpage/pgadmin4
+
+docker exec -it pgadmin ping db
+
+
+========================================
+
+Docker Compose :
+Docker compose is a tool for defining and managing multicontainer Docker
+application
+
+docker compose.yml file -
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: rahul
+      POSTGRES_PASSWORD: Rahul@123
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:
+
+
+
+
+
+======================================
+
+Monolithic architecture:
+
+Monolithic architecture is a design where all the components in an application are interconnected and interdependent
+
+
+Problems with monolithic architecture : 
+
+1)Limited Horizontal Scaling: The entire application must be replicated even if only a small part needs more resources.
+
+2)Longer Build & Deployment Times: Even small changes require rebuilding and redeploying the entire application.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
