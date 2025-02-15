@@ -97,6 +97,7 @@ JPA -
 Java persistence API and it allows you to convert objects
 into relational table.
 
+Data Access Layer
 this layer would be responsible for performing the crud operation so what do mean by crud operation crud stands for create read update and delete 
 
 like for example you
